@@ -1,21 +1,49 @@
-<!-- eslint-disable prettier/prettier -->
+<!--
+/**
+ * 管理员登录组件
+ * 
+ * 该组件实现了管理员登录功能，包括：
+ * 1. 管理员账号密码登录
+ * 2. 记住登录状态
+ * 3. 登录状态验证和错误处理
+ * 4. 登录成功后跳转
+ * 
+ * 组件依赖：
+ * - Ant Design Vue 组件库
+ * - Vue Router 路由管理
+ * - Vuex 状态管理
+ * 
+ * @author Administrator
+ * @version 1.0
+ * @date 2024-03-26
+ */
+-->
+
 <template>
+  <!--页面容器：包含背景动画和登录卡片-->
   <div class="container">
+    <!--动态背景：使用CSS动画创建波浪效果-->
     <div class="animated-background">
       <div class="wave wave1"></div>
       <div class="wave wave2"></div>
       <div class="wave wave3"></div>
       <div class="wave wave4"></div>
     </div>
+    
+    <!--返回首页按钮：固定在左上角-->
     <div class="back-home-corner">
       <a @click="router.push({ name: 'portal' })" class="back-link">
         <span class="back-icon">←</span>
         <span>返回首页</span>
       </a>
     </div>
+    
+    <!--登录卡片：包含品牌展示和登录表单-->
     <div class="admin-login-card">
+      <!--品牌展示面板：展示系统品牌和功能特点-->
       <div class="brand-panel">
         <div class="brand-content">
+          <!--品牌Logo区域-->
           <div class="logo-container">
             <div class="logo-icon">
               <div class="shopping-bag">
@@ -28,9 +56,13 @@
               <span class="logo-text">品质商城</span>
             </div>
           </div>
+          <!--管理后台标识-->
           <div class="admin-badge">管理后台</div>
+          <!--系统标语-->
           <div class="slogan">安全高效的电商管理系统</div>
+          <!--功能特点列表-->
           <div class="feature-list">
+            <!--商品管理功能-->
             <div class="feature-item">
               <div class="feature-icon">
                 <i class="feature-icon-inner">🛒</i>
@@ -40,6 +72,7 @@
                 <p>高效管理商品信息及库存</p>
               </div>
             </div>
+            <!--数据分析功能-->
             <div class="feature-item">
               <div class="feature-icon">
                 <i class="feature-icon-inner">📊</i>
@@ -49,6 +82,7 @@
                 <p>实时掌握销售趋势及用户行为</p>
               </div>
             </div>
+            <!--用户管理功能-->
             <div class="feature-item">
               <div class="feature-icon">
                 <i class="feature-icon-inner">👥</i>
@@ -61,12 +95,18 @@
           </div>
         </div>
       </div>
+      
+      <!--登录表单面板-->
       <div class="login-panel">
+        <!--登录表单标题-->
         <div class="login-header">
           <h2>管理员登录</h2>
           <p>安全管理，高效运营</p>
         </div>
+        
+        <!--登录表单容器-->
         <div class="form-container">
+          <!--使用Ant Design Vue的表单组件-->
           <a-form
             ref="myform"
             layout="vertical"
@@ -75,6 +115,7 @@
             :hideRequiredMark="true"
             class="admin-form"
           >
+            <!--用户名输入框-->
             <div class="input-wrapper">
               <label class="input-label">账号</label>
               <a-form-item name="username" :colon="false">
@@ -88,6 +129,7 @@
               </a-form-item>
             </div>
             
+            <!--密码输入框-->
             <div class="input-wrapper">
               <label class="input-label">密码</label>
               <a-form-item name="password" :colon="false">
@@ -102,6 +144,7 @@
               </a-form-item>
             </div>
             
+            <!--登录选项：记住密码和忘记密码-->
             <div class="additional-options">
               <label class="remember-option">
                 <input type="checkbox" class="remember-checkbox" v-model="checked" />
@@ -111,6 +154,7 @@
               <a class="forgot-link">忘记密码?</a>
             </div>
             
+            <!--登录按钮-->
             <a-form-item>
               <button
                 class="login-button"
@@ -129,42 +173,78 @@
 </template>
 
 <script setup lang="ts">
+/**
+ * 引入必要的依赖
+ * - Vue Router：用于页面导航
+ * - Vuex Store：用于状态管理
+ * - Ant Design Vue：用于UI组件
+ * - Vue Composition API：用于组件逻辑
+ */
 import { useUserStore } from '/@/store';
 import { useRouter } from 'vue-router';
 import { message } from 'ant-design-vue';
 import { reactive, ref, onMounted } from 'vue';
 
+/**
+ * 初始化路由和状态管理
+ */
 const router = useRouter();
 const userStore = useUserStore();
 
-const myform = ref();
-const loginBtn = ref<Boolean>(false);
-const checked = ref<Boolean>(false);
+/**
+ * 组件引用和状态变量
+ */
+const myform = ref(); // 表单引用
+const loginBtn = ref<Boolean>(false); // 登录按钮加载状态
+const checked = ref<Boolean>(false); // 记住密码状态
 
+/**
+ * 响应式数据对象
+ * 包含登录表单数据和验证规则
+ */
 const data = reactive({
+  // 登录表单数据
   loginForm: {
     username: '',
     password: '',
   },
+  // 表单验证规则
   rules: {
     username: [{ required: true, message: '请输入管理员账号', trigger: 'blur' }],
     password: [{ required: true, message: '请输入管理员密码', trigger: 'blur' }],
   },
 });
 
+/**
+ * 处理表单提交
+ * 
+ * 验证表单数据并触发登录流程
+ * 
+ * @throws {Error} 当表单验证失败时抛出错误
+ */
 const handleSubmit = () => {
-  console.log('提交数据:', data.loginForm);  // 添加调试信息
+  console.log('提交数据:', data.loginForm);
   
+  // 验证表单数据
   if (!data.loginForm.username || !data.loginForm.password) {
-    console.log('验证失败:', data.loginForm.username, data.loginForm.password);  // 添加调试信息
+    console.log('验证失败:', data.loginForm.username, data.loginForm.password);
     message.warn('请填写完整登录信息');
     return;
   }
   
+  // 设置登录按钮加载状态
   loginBtn.value = true;
+  // 执行登录操作
   handleLogin();
 };
 
+/**
+ * 执行登录操作
+ * 
+ * 调用Vuex action进行登录验证
+ * 
+ * @throws {Error} 当登录失败时抛出错误
+ */
 const handleLogin = () => {
   userStore
     .adminLogin({
@@ -172,14 +252,21 @@ const handleLogin = () => {
       password: data.loginForm.password,
     })
     .then((res) => {
+      // 登录成功处理
       loginSuccess();
     })
     .catch((err) => {
+      // 登录失败处理
       loginBtn.value = false;
       message.warn(err.msg || '登录失败');
     });
 };
 
+/**
+ * 登录成功处理
+ * 
+ * 跳转到管理后台首页并显示成功提示
+ */
 const loginSuccess = () => {
   router.push({ path: '/admin' });
   message.success('登录成功！');
@@ -187,6 +274,10 @@ const loginSuccess = () => {
 </script>
 
 <style lang="less" scoped>
+/**
+ * 页面容器样式
+ * 设置整体布局和背景
+ */
 .container {
   width: 100%;
   min-height: 100vh;
@@ -197,6 +288,10 @@ const loginSuccess = () => {
   overflow: hidden;
 }
 
+/**
+ * 动态背景样式
+ * 创建渐变背景和波浪动画效果
+ */
 .animated-background {
   position: absolute;
   width: 100%;
@@ -208,6 +303,10 @@ const loginSuccess = () => {
   z-index: -1;
 }
 
+/**
+ * 波浪动画样式
+ * 定义波浪形状和动画效果
+ */
 .wave {
   position: absolute;
   width: 200%;
@@ -219,29 +318,10 @@ const loginSuccess = () => {
   left: -50%;
 }
 
-.wave1 {
-  animation: rotate 12s linear infinite;
-  transform-origin: 50% 48%;
-}
-
-.wave2 {
-  animation: rotate 16s linear infinite;
-  opacity: 0.2;
-  transform-origin: 49% 52%;
-}
-
-.wave3 {
-  animation: rotate 20s linear infinite reverse;
-  opacity: 0.15;
-  transform-origin: 51% 48%;
-}
-
-.wave4 {
-  animation: rotate 24s linear infinite;
-  opacity: 0.1;
-  transform-origin: 52% 50%;
-}
-
+/**
+ * 波浪动画关键帧
+ * 定义旋转动画效果
+ */
 @keyframes rotate {
   0% {
     transform: rotate(0deg);
@@ -251,6 +331,10 @@ const loginSuccess = () => {
   }
 }
 
+/**
+ * 登录卡片样式
+ * 设置卡片布局和阴影效果
+ */
 .admin-login-card {
   width: 750px;
   min-height: 480px;
@@ -263,6 +347,10 @@ const loginSuccess = () => {
   z-index: 1;
 }
 
+/**
+ * 品牌面板样式
+ * 设置左侧品牌展示区域样式
+ */
 .brand-panel {
   position: relative;
   width: 40%;
@@ -271,6 +359,10 @@ const loginSuccess = () => {
   background: linear-gradient(135deg, #3c5a9a, #6e479c);
 }
 
+/**
+ * 品牌内容样式
+ * 设置品牌展示区域内部布局
+ */
 .brand-content {
   position: relative;
   display: flex;
@@ -280,12 +372,20 @@ const loginSuccess = () => {
   z-index: 4;
 }
 
+/**
+ * Logo容器样式
+ * 设置Logo和品牌名称的布局
+ */
 .logo-container {
   display: flex;
   align-items: center;
   margin-bottom: 15px;
 }
 
+/**
+ * Logo图标样式
+ * 创建购物袋图标效果
+ */
 .logo-icon {
   position: relative;
   width: 48px;
@@ -296,6 +396,10 @@ const loginSuccess = () => {
   justify-content: center;
 }
 
+/**
+ * 购物袋图标样式
+ * 使用CSS创建购物袋形状
+ */
 .shopping-bag {
   position: relative;
   width: 36px;
@@ -335,12 +439,10 @@ const loginSuccess = () => {
   }
 }
 
-.admin-logo {
-  width: 40px;
-  height: 40px;
-  filter: brightness(0) invert(1);
-}
-
+/**
+ * 品牌名称样式
+ * 设置品牌名称的字体和颜色
+ */
 .logo-brand {
   position: relative;
 }
@@ -352,6 +454,10 @@ const loginSuccess = () => {
   letter-spacing: 0.5px;
 }
 
+/**
+ * 管理后台标识样式
+ * 设置半透明背景和模糊效果
+ */
 .admin-badge {
   display: inline-block;
   background: rgba(255, 255, 255, 0.15);
@@ -363,6 +469,10 @@ const loginSuccess = () => {
   backdrop-filter: blur(5px);
 }
 
+/**
+ * 系统标语样式
+ * 设置标语文本的字体和透明度
+ */
 .slogan {
   font-size: 15px;
   opacity: 0.9;
@@ -370,12 +480,20 @@ const loginSuccess = () => {
   font-weight: 300;
 }
 
+/**
+ * 功能特点列表样式
+ * 设置功能展示区域的布局和间距
+ */
 .feature-list {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
+/**
+ * 功能项样式
+ * 设置单个功能项的布局和样式
+ */
 .feature-item {
   display: flex;
   align-items: flex-start;
@@ -415,6 +533,10 @@ const loginSuccess = () => {
   }
 }
 
+/**
+ * 登录面板样式
+ * 设置右侧登录表单区域的布局
+ */
 .login-panel {
   flex: 1;
   padding: 30px;
@@ -422,6 +544,10 @@ const loginSuccess = () => {
   flex-direction: column;
 }
 
+/**
+ * 登录标题样式
+ * 设置登录表单标题的字体和颜色
+ */
 .login-header {
   margin-bottom: 24px;
   
@@ -439,11 +565,19 @@ const loginSuccess = () => {
   }
 }
 
+/**
+ * 表单容器样式
+ * 设置表单区域的宽度和布局
+ */
 .form-container {
   width: 100%;
   max-width: 340px;
 }
 
+/**
+ * 输入框包装器样式
+ * 设置输入框标签和输入框的布局
+ */
 .input-wrapper {
   margin-bottom: 10px;
   
@@ -456,6 +590,10 @@ const loginSuccess = () => {
   }
 }
 
+/**
+ * 管理员表单样式
+ * 自定义Ant Design Vue表单组件的样式
+ */
 .admin-form {
   :deep(.ant-form-item) {
     margin-bottom: 20px;
@@ -479,6 +617,10 @@ const loginSuccess = () => {
   }
 }
 
+/**
+ * 登录选项样式
+ * 设置记住密码和忘记密码的布局
+ */
 .additional-options {
   display: flex;
   align-items: center;
@@ -546,6 +688,10 @@ const loginSuccess = () => {
   }
 }
 
+/**
+ * 登录按钮样式
+ * 设置登录按钮的渐变背景和悬停效果
+ */
 .login-button {
   width: 100%;
   height: 48px;
@@ -579,6 +725,10 @@ const loginSuccess = () => {
   }
 }
 
+/**
+ * 返回首页按钮样式
+ * 设置左上角返回按钮的样式和动画效果
+ */
 .back-home-corner {
   position: absolute;
   top: 20px;
