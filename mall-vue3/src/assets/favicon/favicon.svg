@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- 购物袋提手 -->
+  <path d="M40 25 A10 10 0 0 1 60 25" stroke="#4684e2" stroke-width="8" fill="none" stroke-linecap="round"/>
+  
+  <!-- 购物袋主体 -->
+  <rect x="30" y="30" width="40" height="45" rx="5" fill="url(#gradient)" />
+  
+  <!-- 高光效果 -->
+  <circle cx="60" cy="60" r="5" fill="white" opacity="0.5" />
+  
+  <!-- 定义渐变 -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4684e2" />
+      <stop offset="100%" stop-color="#7a5af8" />
+    </linearGradient>
+  </defs>
+</svg> 

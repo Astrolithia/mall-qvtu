@@ -1,0 +1,19 @@
+/*
+要将SVG转换为ICO文件，请按照以下步骤操作：
+
+1. 使用我们创建的SVG文件
+2. 访问在线转换工具，如 https://convertio.co/svg-ico/ 或 https://favicon.io/
+3. 上传SVG文件并转换为ICO格式
+4. 将生成的ICO文件保存为 favicon.ico 到 src/assets/favicon/ 目录
+
+或者，如果您有访问Node.js环境的权限：
+
+1. 安装 svg2png 和 png2ico 包：
+   npm install -g svg2png png2ico
+
+2. 将SVG转换为PNG：
+   svg2png favicon.svg -o favicon.png
+
+3. 将PNG转换为ICO：
+   png2ico favicon.ico favicon.png
+*/ 
