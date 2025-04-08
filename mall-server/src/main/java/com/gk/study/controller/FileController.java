@@ -15,23 +15,46 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+
 /**
- *  * @author Administrator
- *  * @date 2024-03-26
+ * 文件上传控制器
+ * 提供文件上传相关的操作接口
+ * 主要功能包括：
+ * 1. 上传图片（支持富文本编辑器）
+ * 2. 上传视频（支持富文本编辑器）
+ * 
+ * 文件存储说明：
+ * - 图片文件存储在 editor/images 目录下
+ * - 视频文件存储在 editor/videos 目录下
+ * - 使用UUID生成唯一文件名，避免文件名冲突
+ * 
+ * @author Administrator
+ * @date 2024-03-26
  */
 @RestController
 @RequestMapping("/file")
 public class FileController {
 
+    // 日志记录器
     private final static Logger logger = LoggerFactory.getLogger(FileController.class);
 
+    // 文件上传根路径配置
     @Value("${File.uploadPath}")
     private String uploadPath;
 
     /**
      * 上传图片（富文本编辑器使用）
-     * @param file 上传的文件
-     * @return 返回上传结果和文件URL
+     * 支持图片文件上传，返回符合wangEditor格式的响应
+     * 
+     * 处理流程：
+     * 1. 验证文件是否为空
+     * 2. 生成唯一文件名
+     * 3. 创建存储目录
+     * 4. 保存文件
+     * 5. 返回文件访问URL
+     * 
+     * @param file 上传的图片文件
+     * @return APIResponse 包含文件URL等信息的响应对象
      */
     @RequestMapping(value = "/upload/image", method = RequestMethod.POST)
     public APIResponse uploadImage(@RequestParam("file") MultipartFile file) {
@@ -75,8 +98,17 @@ public class FileController {
     
     /**
      * 上传视频（富文本编辑器使用）
-     * @param file 上传的文件
-     * @return 返回上传结果和文件URL
+     * 支持视频文件上传，返回文件访问URL
+     * 
+     * 处理流程：
+     * 1. 验证文件是否为空
+     * 2. 生成唯一文件名
+     * 3. 创建存储目录
+     * 4. 保存文件
+     * 5. 返回文件访问URL
+     * 
+     * @param file 上传的视频文件
+     * @return APIResponse 包含文件URL的响应对象
      */
     @RequestMapping(value = "/upload/video", method = RequestMethod.POST)
     public APIResponse uploadVideo(@RequestParam("file") MultipartFile file) {

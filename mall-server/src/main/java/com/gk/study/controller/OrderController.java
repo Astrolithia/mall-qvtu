@@ -20,7 +20,28 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 订单控制器
+ * 订单管理控制器
+ * 提供订单的增删改查等操作接口
+ * 主要功能包括：
+ * 1. 查询订单列表
+ * 2. 查询用户订单
+ * 3. 创建订单
+ * 4. 支付订单
+ * 5. 删除订单
+ * 6. 更新订单
+ * 7. 取消订单
+ * 8. 订单发货
+ * 9. 查询物流
+ * 10. 确认收货
+ * 
+ * 订单状态说明：
+ * - 待支付(1)
+ * - 待发货(2)
+ * - 待收货(3)
+ * - 待评价(4)
+ * - 已完成(5)
+ * - 已取消(7)
+ * 
  * @author Administrator
  * @date 2024-03-26
  */
@@ -28,31 +49,49 @@ import java.util.Map;
 @RequestMapping("/order")
 public class OrderController {
 
+    // 日志记录器
     private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
+    // 注入订单服务
     @Autowired
     OrderService service;
     
+    // 注入商品服务
     @Autowired
     ThingService thingService;
     
+    // 注入用户积分服务
     @Autowired
     UserScoreService userScoreService;
 
+    /**
+     * 获取所有订单列表
+     * @return APIResponse 包含订单列表的响应对象
+     */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public APIResponse list(){
         List<Order> list =  service.getOrderList();
-
         return new APIResponse(ResponeCode.SUCCESS, "查询成功", list);
     }
 
-    // 用户订单
+    /**
+     * 获取指定用户的订单列表
+     * @param userId 用户ID
+     * @param status 订单状态
+     * @return APIResponse 包含用户订单列表的响应对象
+     */
     @RequestMapping(value = "/userOrderList", method = RequestMethod.GET)
     public APIResponse userOrderList(String userId, String status){
         List<Order> list =  service.getUserOrderList(userId, status);
         return new APIResponse(ResponeCode.SUCCESS, "查询成功", list);
     }
 
+    /**
+     * 创建新订单
+     * @param order 订单对象
+     * @return APIResponse 操作结果响应
+     * @throws IOException 可能抛出的IO异常
+     */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @Transactional
     public APIResponse create(Order order) throws IOException {
@@ -60,6 +99,19 @@ public class OrderController {
         return new APIResponse(ResponeCode.SUCCESS, "创建成功");
     }
     
+    /**
+     * 支付订单
+     * 处理流程：
+     * 1. 验证订单是否存在
+     * 2. 检查商品库存
+     * 3. 减少商品库存
+     * 4. 更新订单状态
+     * 5. 增加商品销量
+     * 
+     * @param order 订单对象
+     * @return APIResponse 操作结果响应
+     * @throws IOException 可能抛出的IO异常
+     */
     @RequestMapping(value = "/payOrder", method = RequestMethod.POST)
     @Transactional
     public APIResponse payOrder(Order order) throws IOException {
@@ -105,12 +157,17 @@ public class OrderController {
         }
     }
 
-
+    /**
+     * 批量删除订单
+     * 需要管理员权限
+     * @param ids 要删除的订单ID列表，以逗号分隔
+     * @return APIResponse 操作结果响应
+     */
     @Access(level = AccessLevel.ADMIN)
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public APIResponse delete(String ids){
         System.out.println("ids===" + ids);
-        // 批量删除
+        // 批量删除处理
         String[] arr = ids.split(",");
         for (String id : arr) {
             service.deleteOrder(id);
@@ -118,6 +175,12 @@ public class OrderController {
         return new APIResponse(ResponeCode.SUCCESS, "删除成功");
     }
 
+    /**
+     * 更新订单信息
+     * @param order 订单对象
+     * @return APIResponse 操作结果响应
+     * @throws IOException 可能抛出的IO异常
+     */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @Transactional
     public APIResponse update(Order order) throws IOException {
@@ -125,6 +188,13 @@ public class OrderController {
         return new APIResponse(ResponeCode.SUCCESS, "更新成功");
     }
 
+    /**
+     * 管理员取消订单
+     * 需要管理员权限
+     * @param id 订单ID
+     * @return APIResponse 操作结果响应
+     * @throws IOException 可能抛出的IO异常
+     */
     @Access(level = AccessLevel.ADMIN)
     @RequestMapping(value = "/cancelOrder", method = RequestMethod.POST)
     public APIResponse cancelOrder(Long id) throws IOException {
@@ -135,6 +205,13 @@ public class OrderController {
         return new APIResponse(ResponeCode.SUCCESS, "取消成功");
     }
 
+    /**
+     * 用户取消订单
+     * 需要登录权限
+     * @param id 订单ID
+     * @return APIResponse 操作结果响应
+     * @throws IOException 可能抛出的IO异常
+     */
     @Access(level = AccessLevel.LOGIN)
     @RequestMapping(value = "/cancelUserOrder", method = RequestMethod.POST)
     @Transactional
@@ -146,6 +223,18 @@ public class OrderController {
         return new APIResponse(ResponeCode.SUCCESS, "取消成功");
     }
     
+    /**
+     * 订单发货
+     * 需要管理员权限
+     * 处理流程：
+     * 1. 验证订单ID
+     * 2. 验证物流信息
+     * 3. 更新订单状态为待收货
+     * 
+     * @param order 订单对象
+     * @return APIResponse 操作结果响应
+     * @throws IOException 可能抛出的IO异常
+     */
     @Access(level = AccessLevel.ADMIN)
     @RequestMapping(value = "/ship", method = RequestMethod.POST)
     @Transactional
@@ -173,6 +262,12 @@ public class OrderController {
         return new APIResponse(ResponeCode.SUCCESS, "发货成功");
     }
     
+    /**
+     * 查询物流信息
+     * @param trackingNumber 快递单号
+     * @param orderId 订单ID
+     * @return APIResponse 包含物流信息的响应对象
+     */
     @RequestMapping(value = "/checkShipping", method = RequestMethod.GET)
     public APIResponse checkShipping(String trackingNumber, String orderId) {
         if (trackingNumber == null || trackingNumber.isEmpty()) {
@@ -183,6 +278,18 @@ public class OrderController {
         return new APIResponse(ResponeCode.SUCCESS, "查询成功", "物流查询功能正在开发中");
     }
 
+    /**
+     * 确认收货
+     * 处理流程：
+     * 1. 验证订单ID
+     * 2. 检查订单状态
+     * 3. 更新订单状态为待评价
+     * 4. 计算并添加用户积分
+     * 
+     * @param id 订单ID
+     * @return APIResponse 操作结果响应
+     * @throws IOException 可能抛出的IO异常
+     */
     @RequestMapping(value = "/confirmReceipt", method = RequestMethod.POST)
     @Transactional
     public APIResponse confirmReceipt(Long id) throws IOException {

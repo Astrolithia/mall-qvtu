@@ -898,3 +898,49 @@ java.sql.SQLSyntaxErrorException: Table 'mall.B_classification' doesn't exist
 2025-04-08 16:38:08.464 [ main ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-9100"]
 2025-04-08 16:38:08.471 [ main ] - [ INFO  ] [ o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
 2025-04-08 16:38:08.477 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 61 ] - Started MySpringApplication in 1.11 seconds (JVM running for 1.471)
+2025-04-08 16:51:27.664 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 110 ] - HikariPool-1 - Starting...
+2025-04-08 16:51:27.966 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 123 ] - HikariPool-1 - Start completed.
+2025-04-08 16:51:32.589 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 91 ] - 分类筛选 - 分类ID: 13，包含子分类ID: [13, 14, 15]
+2025-04-08 16:51:34.030 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 91 ] - 分类筛选 - 分类ID: 16，包含子分类ID: [16, 17, 18]
+2025-04-08 16:51:35.088 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 91 ] - 分类筛选 - 分类ID: 19，包含子分类ID: [19, 20, 21]
+2025-04-08 16:51:36.101 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 91 ] - 分类筛选 - 分类ID: 22，包含子分类ID: [22, 23]
+2025-04-08 17:02:24.423 [ SpringApplicationShutdownHook ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 350 ] - HikariPool-1 - Shutdown initiated...
+2025-04-08 17:02:24.431 [ SpringApplicationShutdownHook ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 352 ] - HikariPool-1 - Shutdown completed.
+2025-04-08 17:02:27.177 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 55 ] - Starting MySpringApplication using Java 17.0.14 on Mac-mini.local with PID 9860 (/Users/astrolithia/Documents/mall/mall-server/target/classes started by astrolithia in /Users/astrolithia/Documents/mall)
+2025-04-08 17:02:27.178 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 659 ] - No active profile set, falling back to default profiles: default
+2025-04-08 17:02:27.625 [ main ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-9100"]
+2025-04-08 17:02:27.625 [ main ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
+2025-04-08 17:02:27.625 [ main ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.53]
+2025-04-08 17:02:27.653 [ main ] - [ INFO  ] [ o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] : 173 ] - Initializing Spring embedded WebApplicationContext
+2025-04-08 17:02:27.798 [ main ] - [ WARN  ] [ c.b.mybatisplus.core.injector.DefaultSqlInjector : 56 ] - class com.gk.study.entity.VisitData ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2025-04-08 17:02:28.199 [ main ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-9100"]
+2025-04-08 17:02:28.210 [ main ] - [ INFO  ] [ o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-08 17:02:28.217 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 61 ] - Started MySpringApplication in 1.263 seconds (JVM running for 1.611)
+2025-04-08 17:02:33.457 [ http-nio-9100-exec-4 ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 110 ] - HikariPool-1 - Starting...
+2025-04-08 17:02:33.612 [ http-nio-9100-exec-4 ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 123 ] - HikariPool-1 - Start completed.
+2025-04-08 17:21:34.582 [ SpringApplicationShutdownHook ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 350 ] - HikariPool-1 - Shutdown initiated...
+2025-04-08 17:21:34.590 [ SpringApplicationShutdownHook ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 352 ] - HikariPool-1 - Shutdown completed.
+2025-04-08 17:21:37.025 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 55 ] - Starting MySpringApplication using Java 17.0.14 on Mac-mini.local with PID 15914 (/Users/astrolithia/Documents/mall/mall-server/target/classes started by astrolithia in /Users/astrolithia/Documents/mall)
+2025-04-08 17:21:37.026 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 659 ] - No active profile set, falling back to default profiles: default
+2025-04-08 17:21:37.400 [ main ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-9100"]
+2025-04-08 17:21:37.400 [ main ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
+2025-04-08 17:21:37.400 [ main ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.53]
+2025-04-08 17:21:37.426 [ main ] - [ INFO  ] [ o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] : 173 ] - Initializing Spring embedded WebApplicationContext
+2025-04-08 17:21:37.549 [ main ] - [ WARN  ] [ c.b.mybatisplus.core.injector.DefaultSqlInjector : 56 ] - class com.gk.study.entity.VisitData ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2025-04-08 17:21:37.856 [ main ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-9100"]
+2025-04-08 17:21:37.864 [ main ] - [ INFO  ] [ o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-08 17:21:37.869 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 61 ] - Started MySpringApplication in 1.029 seconds (JVM running for 1.296)
+2025-04-08 17:21:41.906 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 110 ] - HikariPool-1 - Starting...
+2025-04-08 17:21:41.999 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 123 ] - HikariPool-1 - Start completed.
+2025-04-08 17:27:25.076 [ SpringApplicationShutdownHook ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 350 ] - HikariPool-1 - Shutdown initiated...
+2025-04-08 17:27:25.092 [ SpringApplicationShutdownHook ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 352 ] - HikariPool-1 - Shutdown completed.
+2025-04-08 17:27:28.211 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 55 ] - Starting MySpringApplication using Java 17.0.14 on Mac-mini.local with PID 17578 (/Users/astrolithia/Documents/mall/mall-server/target/classes started by astrolithia in /Users/astrolithia/Documents/mall)
+2025-04-08 17:27:28.212 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 659 ] - No active profile set, falling back to default profiles: default
+2025-04-08 17:27:28.656 [ main ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-9100"]
+2025-04-08 17:27:28.656 [ main ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
+2025-04-08 17:27:28.656 [ main ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.53]
+2025-04-08 17:27:28.690 [ main ] - [ INFO  ] [ o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] : 173 ] - Initializing Spring embedded WebApplicationContext
+2025-04-08 17:27:28.845 [ main ] - [ WARN  ] [ c.b.mybatisplus.core.injector.DefaultSqlInjector : 56 ] - class com.gk.study.entity.VisitData ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2025-04-08 17:27:29.234 [ main ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-9100"]
+2025-04-08 17:27:29.241 [ main ] - [ INFO  ] [ o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-08 17:27:29.248 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 61 ] - Started MySpringApplication in 1.272 seconds (JVM running for 1.602)
