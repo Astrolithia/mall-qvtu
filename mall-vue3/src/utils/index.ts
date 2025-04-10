@@ -1,24 +1,41 @@
-// import { resolve } from 'path';
-// const fs = require('fs');
-//
-// function pathResolve(dir: string) {
-//   return resolve(process.cwd(), '.', dir);
-// }
-//
-// export const getFolder = (path: any) => {
-//   const components: Array<string> = [];
-//   const files = fs.readdirSync(path);
-//   files.forEach(function (item: string) {
-//     const stat = fs.lstatSync(path + '/' + item);
-//     if (stat.isDirectory() === true && item != 'components') {
-//       components.push(path + '/' + item);
-//       components.push(pathResolve(path + '/' + item));
-//     }
-//   });
-//   return components;
-// };
+/**
+ * 通用工具函数模块
+ * 
+ * 该模块提供项目中常用的工具函数和辅助方法。
+ * 主要用于处理日期时间格式化等常见操作。
+ * 支持多种格式的数据处理，提高代码复用性。
+ * 
+ * @module utils/index
+ * @author Administrator
+ * @version 1.0
+ * @date 2024-03-27
+ */
 
-export function getFormatTime(dateTime,flag) {
+/**
+ * 日期时间格式化函数
+ * 
+ * 将时间戳格式化为标准日期时间字符串。
+ * 根据flag参数决定是否显示时分秒信息。
+ * 支持数字类型和字符串类型的时间戳输入。
+ * 
+ * @function getFormatTime
+ * @param {number|string} dateTime - 需要格式化的时间戳
+ * @param {boolean} flag - 是否显示时分秒，true显示时分秒，false仅显示年月日
+ * @returns {string} 格式化后的日期时间字符串
+ * 
+ * @example
+ * // 返回: "2023-10-20 14:30:45"
+ * getFormatTime(1697787045000, true) 
+ * 
+ * @example
+ * // 返回: "2023-10-20"
+ * getFormatTime(1697787045000, false)
+ * 
+ * @example
+ * // 返回: ""
+ * getFormatTime(null, true)
+ */
+export function getFormatTime(dateTime, flag) {
   if(dateTime != null ) {
     //若传入的dateTime为字符串类型，需要进行转换成数值，若不是无需下面注释代码
     var time = parseInt(dateTime)
