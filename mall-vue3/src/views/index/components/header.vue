@@ -119,7 +119,7 @@
                 :key="tag.id"
                 class="tag-item"
                 :style="{ backgroundColor: getTagColor(tag.id) }"
-                @click="navigateToTag(tag.id)"
+                @click="navigateToTag(tag.id, tag.title)"
               >
                 {{ tag.title }}
               </div>
@@ -406,11 +406,15 @@ const navigateToCategory = (categoryId) => {
  * 
  * @description 根据标签ID跳转到对应的商品列表页面
  * @param {number} tagId - 标签ID
+ * @param {string} tagName - 标签名称
  */
-const navigateToTag = (tagId) => {
+const navigateToTag = (tagId, tagName) => {
   router.push({
     name: 'search',
-    query: { tag: tagId }
+    query: { 
+      tag: tagId,
+      tag_name: tagName
+    }
   })
   showTagsPanel.value = false
 }
