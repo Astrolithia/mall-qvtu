@@ -252,15 +252,38 @@ const handleClickTitle = (record) => {
  */
 const getCommentList = () => {
   loading.value = true;
-  const userId = userStore.user_id;
   
-  listUserCommentsApi({
-    userId: userId,
+  // 确保用户已登录
+  if (!userStore.user_token) {
+    message.warning('请先登录');
+    loading.value = false;
+    return;
+  }
+  
+  // 调试信息
+  console.log('用户信息:', {
+    userId: userStore.user_id,
+    token: userStore.user_token
+  });
+  
+  // 构建请求参数
+  const params = {
+    userId: userStore.user_id,
     page: currentPage.value,
-    pageSize: pageSize.value,
-    filter: filterType.value
-  })
+    pageSize: pageSize.value
+  };
+  
+  // 仅当选择了非"all"选项时才添加filter参数
+  if (filterType.value !== 'all') {
+    params.filter = filterType.value;
+  }
+  
+  console.log('请求参数:', params);
+  
+  // 发起API请求
+  listUserCommentsApi(params)
     .then(res => {
+      console.log('API响应成功:', res);
       if (res.data && Array.isArray(res.data)) {
         // 处理评论图片路径
         res.data.forEach(item => {
@@ -277,8 +300,29 @@ const getCommentList = () => {
       loading.value = false;
     })
     .catch(err => {
-      console.error('获取评论列表失败', err);
-      message.error(err.msg || '获取评论列表失败');
+      console.error('获取评论列表失败 - 详细错误:', err);
+      
+      // 尝试处理不同类型的错误
+      if (err.response) {
+        const status = err.response.status;
+        console.error(`状态码: ${status}`);
+        console.error('响应数据:', err.response.data);
+        
+        if (status === 401) {
+          message.error('登录已过期，请重新登录');
+          // 可能需要执行登出操作
+          // userStore.logout();
+        } else if (status === 500) {
+          message.error('服务器内部错误，请稍后再试');
+        } else {
+          message.error(`服务器响应错误: ${status}`);
+        }
+      } else if (err.request) {
+        message.error('无法连接到服务器，请检查网络');
+      } else {
+        message.error('请求评论列表时出错: ' + (err.message || '未知错误'));
+      }
+      
       loading.value = false;
     });
 };
