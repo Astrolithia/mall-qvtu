@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+  评论数据访问映射文件
+  
+  本映射文件定义了评论相关的SQL查询操作，用于处理商品评论的各种查询需求。
+  主要功能包括获取评论列表、根据商品ID查询评论和根据用户ID查询评论等。
+  所有查询都会关联用户表和商品表，以获取完整的评论信息展示。
+  
+  关联表说明:
+  - b_comment: 评论主表，存储评论基本信息
+  - b_user: 用户表，存储用户信息
+  - b_thing: 商品表，存储商品信息
+  
+  @author Administrator
+  @version 1.0
+  @date 2024-03-27
+-->
 <mapper namespace="com.gk.study.mapper.CommentMapper">
 
+    <!-- 
+      获取所有评论列表
+      
+      查询所有评论信息，并关联用户名和商品标题。
+      结果按评论时间降序排列，展示最新评论在前。
+      
+      @return 返回包含用户信息和商品信息的评论列表
+    -->
     <select id="getList" resultType="com.gk.study.entity.Comment">
         select A.*, B.username, C.title
         from b_comment as A
@@ -10,32 +34,54 @@
         order by A.comment_time desc;
     </select>
 
+    <!-- 
+      根据商品ID查询评论列表
+      
+      查询指定商品的所有评论，并关联用户名和商品标题。
+      支持两种排序方式：按时间排序(recent)和按点赞数排序(hot)。
+      
+      @param thingId 商品ID，可选参数，若不提供则查询所有评论
+      @param order 排序方式，可选值为"recent"(最新)或"hot"(最热)
+      @return 返回指定商品的评论列表，包含用户信息和商品信息
+    -->
     <select id="selectThingCommentList" parameterType="map" resultType="com.gk.study.entity.Comment">
         select A.*, B.username, C.title
         from b_comment as A
                  join b_user as B on (A.user_id=B.id)
                  join b_thing as C on (A.thing_id=C.id)
+        <!-- 根据商品ID筛选评论 -->
         <if test="thingId != null">
             where A.thing_id=#{thingId}
         </if>
+        <!-- 按时间降序排序（最新评论优先） -->
         <if test="order == 'recent'">
             order by A.comment_time desc;
         </if>
+        <!-- 按点赞数降序排序（热门评论优先） -->
         <if test="order == 'hot'">
             order by A.like_count desc;
         </if>
     </select>
 
+    <!-- 
+      根据用户ID查询评论列表
+      
+      查询指定用户发表的所有评论，并关联用户名、商品标题和商品封面图。
+      结果按评论时间降序排列，展示用户最新评论在前。
+      
+      @param userId 用户ID，可选参数，若不提供则查询所有用户的评论
+      @return 返回指定用户的评论列表，包含用户信息和商品详情
+    -->
     <select id="selectUserCommentList" parameterType="map" resultType="com.gk.study.entity.Comment">
         select A.*, B.username, C.title, C.cover
         from b_comment as A
         join b_user as B on (A.user_id=B.id)
         join b_thing as C on (A.thing_id=C.id)
+        <!-- 根据用户ID筛选评论 -->
         <if test="userId != null">
             where A.user_id=#{userId}
         </if>
             order by A.comment_time desc;
     </select>
-
 
 </mapper>

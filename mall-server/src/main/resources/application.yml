@@ -1,30 +1,59 @@
+# 服务器配置
+# 定义应用程序的端口和上下文路径
 server:
+  # 应用程序运行的端口号，服务将在此端口监听请求
   port: 9100
   servlet:
+    # API的上下文路径，所有API将以/api为前缀
     context-path: /api
 
+# MyBatis-Plus配置
+# 配置ORM框架的行为和日志
 mybatis-plus:
   configuration:
+    # 启用标准输出日志，便于开发阶段调试SQL语句
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
+# Spring框架配置
+# 包含数据源、Jackson序列化和MVC相关设置
 spring:
+  # 数据库连接配置
   datasource:
+    # MySQL数据库驱动类
     driver-class-name: com.mysql.cj.jdbc.Driver
+    # 数据库连接URL，指定数据库名称、字符编码和时区等参数
     url: jdbc:mysql://localhost:3306/mall?characterEncoding=utf-8&serverTimezone=GMT%2B8&useSSL=false&nullCatalogMeansCurrent=true&allowPublicKeyRetrieval=true
+    # 数据库用户名
     username: root
+    # 数据库密码
     password: Paramecium88.
+    # HikariCP连接池配置
     hikari:
+      # 连接池保持的最小空闲连接数
       minimum-idle: 10
+  
+  # Jackson JSON处理配置
   jackson:
+    # 日期格式化模式
     date-format: yyyy-MM-dd HH:mm:ss
+    # 时区设置，与数据库时区保持一致
     time-zone: GMT+8
+  
+  # Spring MVC配置
   mvc:
     servlet:
+      # 应用启动时初始化Servlet，而不是首次请求时
       load-on-startup: 1
 
+# 文件上传配置
 File:
+  # 文件上传保存路径，使用应用程序运行目录下的upload文件夹
   uploadPath: ${user.dir}/upload
 
+# MyBatis基础配置
+# 补充MyBatis的基本行为设置
 mybatis:
   configuration:
+    # 启用数据库字段下划线命名到Java驼峰命名的自动转换
+    # 例如：user_name字段会映射到userName属性
     map-underscore-to-camel-case: true

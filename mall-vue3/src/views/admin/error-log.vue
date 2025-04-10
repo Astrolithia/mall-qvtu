@@ -1,7 +1,28 @@
+<!--
+/**
+ * 错误日志管理组件
+ * 
+ * 该组件实现了系统错误日志的管理功能，包括：
+ * 1. 错误日志列表的展示
+ * 2. 错误日志的编辑和删除
+ * 3. 分页和搜索功能
+ * 
+ * 组件依赖：
+ * - Ant Design Vue 组件库
+ * - Vue Composition API
+ * - 日志管理相关API
+ * 
+ * @author Administrator
+ * @version 1.0
+ * @date 2024-03-26
+ */
+-->
+
 <template>
   <div>
-    <!--页面区域-->
+    <!--页面区域：包含错误日志列表-->
     <div class="page-view">
+      <!--错误日志列表表格-->
       <a-table
           size="middle"
           rowKey="id"
@@ -18,11 +39,15 @@
           showTotal: (total) => `共${total}条数据`,
         }"
       >
+        <!--自定义表格单元格渲染-->
         <template #bodyCell="{ text, record, index, column }">
+          <!--操作列-->
           <template v-if="column.key === 'operation'">
             <span>
+              <!--编辑按钮-->
               <a @click="handleEdit(record)">编辑</a>
               <a-divider type="vertical" />
+              <!--删除确认弹窗-->
               <a-popconfirm title="确定删除?" ok-text="是" cancel-text="否" @confirm="confirmDelete(record)">
                 <a href="#">删除</a>
               </a-popconfirm>
@@ -35,10 +60,18 @@
 </template>
 
 <script setup lang="ts">
+/**
+ * 引入必要的依赖
+ * - Ant Design Vue：用于UI组件
+ * - 日志管理相关API
+ */
 import { FormInstance, message } from 'ant-design-vue';
 import { listErrorLogListApi } from '/@/api/log';
 
-
+/**
+ * 表格列配置
+ * 定义表格的列结构、标题、数据字段和渲染方式
+ */
 const columns = reactive([
   {
     title: '序号',
@@ -77,7 +110,10 @@ const columns = reactive([
   }
 ]);
 
-// 页面数据
+/**
+ * 页面数据状态
+ * 包含错误日志列表、加载状态、分页信息等
+ */
 const data = reactive({
   dataList: [],
   loading: false,
@@ -87,11 +123,18 @@ const data = reactive({
   page: 1,
 });
 
-
+/**
+ * 组件挂载后的初始化操作
+ */
 onMounted(() => {
   getDataList();
 });
 
+/**
+ * 获取错误日志列表数据
+ * 
+ * @throws {Error} 当获取数据失败时抛出错误
+ */
 const getDataList = () => {
   data.loading = true;
   listErrorLogListApi({
@@ -100,6 +143,7 @@ const getDataList = () => {
       .then((res) => {
         data.loading = false;
         console.log(res);
+        // 处理列表数据
         res.data.forEach((item: any, index: any) => {
           item.index = index + 1;
         });
@@ -111,7 +155,9 @@ const getDataList = () => {
       });
 };
 
-
+/**
+ * 表格行选择配置
+ */
 const rowSelection = ref({
   onChange: (selectedRowKeys: (string | number)[], selectedRows: DataItem[]) => {
     console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
@@ -119,9 +165,26 @@ const rowSelection = ref({
   },
 });
 
+/**
+ * 定义DataItem接口
+ */
+interface DataItem {
+  id: number | string;
+  index?: number;
+  method?: string;
+  url?: string;
+  content?: string;
+  ip?: string;
+  logTime?: string;
+  [key: string]: any;
+}
 </script>
 
 <style scoped lang="less">
+/**
+ * 页面视图样式
+ * 设置整体布局和背景
+ */
 .page-view {
   min-height: 100%;
   background: #fff;
@@ -130,6 +193,9 @@ const rowSelection = ref({
   flex-direction: column;
 }
 
+/**
+ * 表格操作按钮区域样式
+ */
 .table-operations {
   margin-bottom: 16px;
   text-align: right;

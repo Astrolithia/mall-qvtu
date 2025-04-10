@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+  概览数据访问映射文件
+  
+  本映射文件定义了数据概览和统计相关的SQL查询操作，用于生成电商平台的统计报表和数据分析。
+  主要功能包括热门商品统计、热门分类统计和网站访问数据统计等。
+  这些查询主要用于管理后台的数据分析和可视化展示功能。
+  
+  涉及表说明:
+  - b_order: 订单表，用于统计商品销量
+  - b_thing: 商品表，提供商品基本信息
+  - b_classification: 商品分类表，提供分类信息
+  - b_op_log: 操作日志表，记录用户访问数据
+  
+  @author Administrator
+  @version 1.0
+  @date 2024-03-27
+-->
 <mapper namespace="com.gk.study.mapper.OverviewMapper">
 
+    <!-- 
+      获取热门商品统计
+      
+      统计订单中各商品的销售数量，结合商品表获取商品标题。
+      结果按销售数量降序排列，展示最热门商品在前。
+      用于生成热门商品排行榜和销售趋势分析。
+      
+      @return 返回包含商品ID、商品标题和销售数量的HashMap列表
+    -->
     <select id="getPopularThing" resultType="java.util.HashMap">
         select A.thing_id, B.title, count(A.thing_id) as count
         from b_order A join b_thing B on A.thing_id=B.id
@@ -9,6 +35,15 @@
         order by count desc;
     </select>
 
+    <!-- 
+      获取热门商品分类统计
+      
+      统计各商品分类下的商品数量，用于分析商品分类的丰富度和分布。
+      结果按分类包含的商品数量降序排列，限制返回前5个热门分类。
+      用于首页展示和商品分类优化策略。
+      
+      @return 返回包含分类标题和商品数量的HashMap列表，最多5条记录
+    -->
     <select id="getPopularClassification" resultType="java.util.HashMap">
         select B.title, count(B.title) as count
         from b_thing A join B_classification B on A.classification_id = B.id
@@ -16,10 +51,21 @@
         order by count desc limit 5;
     </select>
 
+    <!-- 
+      获取网站访问数据统计
+      
+      根据日期条件统计不同IP的访问次数，用于分析网站流量和用户活跃度。
+      可按特定日期筛选，统计每个IP的访问频次。
+      用于流量监控、异常访问检测和用户行为分析。
+      
+      @param day 日期参数，格式为"yyyy-MM-dd"，可选参数，若提供则只统计特定日期的访问数据
+      @return 返回VisitData对象列表，包含IP地址和访问次数信息
+    -->
     <select id="getWebVisitData" parameterType="java.lang.String" resultType="com.gk.study.entity.VisitData">
         select re_ip, count(re_ip) as count
         from b_op_log
         <where>
+        <!-- 根据日期条件筛选访问日志 -->
         <if test="day != null">
             re_time like CONCAT('%',#{day},'%')
         </if>

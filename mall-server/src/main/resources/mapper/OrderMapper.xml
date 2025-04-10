@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+  订单数据访问映射文件
+  
+  本映射文件定义了订单相关的SQL查询操作，用于处理电商平台订单的各种查询需求。
+  主要功能包括获取订单列表和根据用户ID查询订单等。
+  所有查询都会关联用户表和商品表，以获取完整的订单信息展示。
+  
+  关联表说明:
+  - b_order: 订单主表，存储订单基本信息
+  - b_user: 用户表，存储用户信息
+  - b_thing: 商品表，存储商品信息
+  
+  @author Administrator
+  @version 1.0
+  @date 2024-03-27
+-->
 <mapper namespace="com.gk.study.mapper.OrderMapper">
 
+    <!-- 
+      获取所有订单列表
+      
+      查询所有订单信息，并关联用户名和商品标题。
+      结果按订单创建时间降序排列，展示最新订单在前。
+      主要用于管理后台的订单管理功能。
+      
+      @return 返回包含用户信息和商品信息的订单列表
+    -->
     <select id="getList" resultType="com.gk.study.entity.Order">
         select A.*, B.username, C.title
         from b_order as A
@@ -10,15 +35,28 @@
         order by A.order_time desc;
     </select>
 
+    <!-- 
+      根据用户ID和订单状态查询订单列表
+      
+      查询指定用户的订单，可根据订单状态进行筛选。
+      关联查询包含更多商品信息，如封面图和价格，以便在前端展示。
+      结果按订单创建时间降序排列，展示用户最新订单在前。
+      
+      @param userId 用户ID，可选参数，若提供则只查询该用户的订单
+      @param status 订单状态，可选参数，若提供则只查询特定状态的订单
+      @return 返回指定条件的订单列表，包含用户信息和商品详情
+    -->
     <select id="getUserOrderList" resultType="com.gk.study.entity.Order">
         select A.*, B.username, C.title, C.cover, C.price
         from b_order as A
                  join b_user as B on (A.user_id=B.id)
                  join b_thing as C on (A.thing_id=C.id)
         where 2>1
+        <!-- 根据用户ID筛选订单 -->
         <if test="userId != null">
             and A.user_id=#{userId}
         </if>
+        <!-- 根据订单状态筛选订单 -->
         <if test="status != null and status != ''">
             and A.status=#{status}
         </if>

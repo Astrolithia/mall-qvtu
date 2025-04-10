@@ -1,22 +1,48 @@
+<!--
+/**
+ * 商品分类管理组件
+ * 
+ * 该组件实现了商品分类的管理功能，包括：
+ * 1. 分类的增删改查
+ * 2. 多级分类的树形展示
+ * 3. 分类的层级管理
+ * 4. 批量删除操作
+ * 
+ * 组件依赖：
+ * - Ant Design Vue 组件库
+ * - Vue Composition API
+ * - 分类管理相关API
+ * 
+ * @author Administrator
+ * @version 1.0
+ * @date 2024-03-26
+ */
+-->
+
 <template>
   <div>
-    <!--页面区域-->
+    <!--页面区域：包含标题、操作按钮和分类展示-->
     <div class="page-view">
+      <!--页面标题区域-->
       <div class="header-section">
         <h2 class="page-title">商品分类</h2>
         <p class="page-description">管理产品分类架构，支持多级分类设置</p>
       </div>
       
+      <!--表格操作按钮区域-->
       <div class="table-operations">
         <a-space>
+          <!--新增分类按钮-->
           <a-button type="primary" @click="handleAdd">
             <template #icon><plus-outlined /></template>
             新增分类
           </a-button>
+          <!--批量删除按钮-->
           <a-button @click="handleBatchDelete">
             <template #icon><delete-outlined /></template>
             批量删除
           </a-button>
+          <!--视图切换开关-->
           <a-switch 
             v-model:checked="data.showTreeMode" 
             checked-children="树形视图" 
@@ -27,7 +53,7 @@
         </a-space>
       </div>
       
-      <!-- 树形视图 -->
+      <!--树形视图：用于展示分类的层级结构-->
       <a-card class="tree-card" v-if="data.showTreeMode">
         <a-spin :spinning="data.loading">
           <a-tree
@@ -37,10 +63,13 @@
             block-node
             class="custom-tree"
           >
+            <!--自定义树节点渲染-->
             <template #title="{ title, id, level }">
               <div class="tree-node">
                 <span class="node-title">{{ title }}</span>
+                <!--分类层级标签-->
                 <a-tag :color="getLevelColor(level)" class="level-tag">{{ getLevelText(level) }}</a-tag>
+                <!--节点操作按钮-->
                 <span class="tree-node-actions">
                   <a-button type="link" size="small" @click.stop="handleEdit(findClassificationById(id))">
                     <template #icon><edit-outlined /></template>
@@ -60,7 +89,7 @@
         </a-spin>
       </a-card>
       
-      <!-- 表格视图 -->
+      <!--表格视图：用于展示分类的列表形式-->
       <a-card class="table-card" v-else>
         <a-table
           size="middle"
@@ -79,7 +108,9 @@
             showTotal: (total) => `共${total}条数据`,
           }"
         >
+          <!--自定义表格单元格渲染-->
           <template #bodyCell="{ text, record, index, column }">
+            <!--操作列-->
             <template v-if="column.key === 'operation'">
               <a-space>
                 <a-button type="link" size="small" @click="handleEdit(record)">
@@ -95,9 +126,11 @@
                 </a-popconfirm>
               </a-space>
             </template>
+            <!--层级列-->
             <template v-if="column.key === 'level'">
               <a-tag :color="getLevelColor(record.level)">{{ getLevelText(record.level) }}</a-tag>
             </template>
+            <!--父级分类列-->
             <template v-if="column.key === 'parentTitle'">
               <span>{{ record.parentTitle || '无' }}</span>
             </template>
@@ -106,7 +139,7 @@
       </a-card>
     </div>
 
-    <!--弹窗区域-->
+    <!--弹窗区域：用于新增和编辑分类-->
     <div>
       <a-modal
         :visible="modal.visile"
@@ -120,8 +153,10 @@
         :maskClosable="false"
       >
         <div>
+          <!--分类表单-->
           <a-form ref="myform" :model="modal.form" :rules="modal.rules" layout="vertical">
             <a-row :gutter="24">
+              <!--分类名称输入-->
               <a-col :span="24">
                 <a-form-item label="分类名称" name="title">
                   <a-input 
@@ -131,6 +166,7 @@
                   />
                 </a-form-item>
               </a-col>
+              <!--父级分类选择-->
               <a-col :span="24">
                 <a-form-item label="父级分类" name="parentId">
                   <a-tree-select
@@ -146,6 +182,7 @@
                     :tree-node-filter-prop="'title'"
                     class="parent-tree-select"
                   >
+                    <!--自定义树节点标题渲染-->
                     <template #title="{ value, title, level }">
                       <span>{{ getIndentText(level) }}{{ title }}</span>
                     </template>
@@ -161,6 +198,12 @@
 </template>
 
 <script setup lang="ts">
+/**
+ * 引入必要的依赖
+ * - Vue Composition API：用于组件逻辑
+ * - Ant Design Vue：用于UI组件
+ * - 分类管理相关API
+ */
 import { computed, ref, reactive, onMounted } from 'vue';
 import { FormInstance, message } from 'ant-design-vue';
 import { createApi, listApi, treeApi, updateApi, deleteApi } from '/@/api/classification';
@@ -173,7 +216,10 @@ import {
   ApartmentOutlined
 } from '@ant-design/icons-vue';
 
-
+/**
+ * 表格列配置
+ * 定义表格的列结构、标题、数据字段和渲染方式
+ */
 const columns = reactive([
   {
     title: '分类名称',
@@ -201,8 +247,10 @@ const columns = reactive([
   },
 ]);
 
-
-// 页面数据
+/**
+ * 页面数据状态
+ * 包含分类列表、树形数据、加载状态等
+ */
 const data = reactive({
   classificationList: [],
   allClassifications: [],
@@ -216,7 +264,10 @@ const data = reactive({
   showTreeMode: true, // 默认显示树形结构
 });
 
-// 弹窗数据源
+/**
+ * 弹窗数据状态
+ * 包含表单数据、验证规则等
+ */
 const modal = reactive({
   visile: false,
   editFlag: false,
@@ -231,9 +282,15 @@ const modal = reactive({
   },
 });
 
+/**
+ * 表单实例引用
+ */
 const myform = ref<FormInstance>();
 
-// 生成父级分类树形数据
+/**
+ * 父级分类树形数据
+ * 计算属性，用于生成父级分类选择器的树形数据
+ */
 const parentTreeData = computed(() => {
   const rootNode = {
     id: 0,
@@ -257,11 +314,19 @@ const parentTreeData = computed(() => {
   return [rootNode, ...treeData];
 });
 
+/**
+ * 组件挂载后的初始化操作
+ */
 onMounted(() => {
   getDataList();
   getClassificationTree();
 });
 
+/**
+ * 获取分类列表数据
+ * 
+ * @throws {Error} 当获取数据失败时抛出错误
+ */
 const getDataList = () => {
   data.loading = true;
   listApi({
@@ -270,6 +335,7 @@ const getDataList = () => {
       .then((res) => {
         data.loading = false;
         console.log(res);
+        // 处理列表数据
         res.data.forEach((item: any, index: any) => {
           item.index = index + 1;
           // 查找父分类名称
@@ -289,6 +355,11 @@ const getDataList = () => {
       });
 };
 
+/**
+ * 获取分类树形数据
+ * 
+ * @throws {Error} 当获取数据失败时抛出错误
+ */
 const getClassificationTree = () => {
   data.loading = true;
   treeApi({})
@@ -302,7 +373,12 @@ const getClassificationTree = () => {
       });
 };
 
-// 构建树形结构
+/**
+ * 构建树形结构数据
+ * 
+ * @param {Array} items - 分类数据列表
+ * @returns {Array} 树形结构数据
+ */
 const buildTreeData = (items) => {
   const result = [];
   const itemMap = {};
@@ -329,11 +405,19 @@ const buildTreeData = (items) => {
   return result;
 };
 
-// 根据ID查找分类
+/**
+ * 根据ID查找分类
+ * 
+ * @param {number} id - 分类ID
+ * @returns {Object} 分类对象
+ */
 const findClassificationById = (id) => {
   return data.allClassifications.find(item => item.id === id);
 };
 
+/**
+ * 切换视图模式
+ */
 const toggleViewMode = () => {
   if (data.showTreeMode) {
     getClassificationTree();
@@ -342,21 +426,42 @@ const toggleViewMode = () => {
   }
 };
 
+/**
+ * 获取层级对应的颜色
+ * 
+ * @param {number} level - 分类层级
+ * @returns {string} 颜色值
+ */
 const getLevelColor = (level) => {
   const colors = ['#5a7be0', '#52c41a', '#722ed1', '#fa8c16', '#f5222d'];
   return colors[(level - 1) % colors.length];
 };
 
+/**
+ * 获取层级对应的文本
+ * 
+ * @param {number} level - 分类层级
+ * @returns {string} 层级文本
+ */
 const getLevelText = (level) => {
   return `${level}级分类`;
 };
 
+/**
+ * 获取缩进文本
+ * 
+ * @param {number} level - 层级
+ * @returns {string} 缩进文本
+ */
 const getIndentText = (level) => {
   // 确保level是数字且大于等于1
   const indentLevel = typeof level === 'number' && level > 0 ? level - 1 : 0;
   return '├ '.repeat(indentLevel);
 };
 
+/**
+ * 表格行选择配置
+ */
 const rowSelection = ref({
   onChange: (selectedRowKeys: (string | number)[], selectedRows: DataItem[]) => {
     console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
@@ -364,12 +469,15 @@ const rowSelection = ref({
   },
 });
 
+/**
+ * 处理新增操作
+ */
 const handleAdd = () => {
   resetModal();
   modal.visile = true;
   modal.editFlag = false;
   modal.title = '新增分类';
-  // 重置
+  // 重置表单数据
   for (const key in modal.form) {
     modal.form[key] = undefined;
   }
@@ -377,15 +485,21 @@ const handleAdd = () => {
   modal.form.parentId = 0;
 };
 
+/**
+ * 处理编辑操作
+ * 
+ * @param {Object} record - 当前行数据
+ */
 const handleEdit = (record: any) => {
   resetModal();
   modal.visile = true;
   modal.editFlag = true;
   modal.title = '编辑分类';
-  // 重置
+  // 重置表单数据
   for (const key in modal.form) {
     modal.form[key] = undefined;
   }
+  // 复制记录数据到表单
   for (const key in record) {
     modal.form[key] = record[key];
   }
@@ -395,6 +509,12 @@ const handleEdit = (record: any) => {
   }
 };
 
+/**
+ * 确认删除操作
+ * 
+ * @param {Object} record - 要删除的记录
+ * @throws {Error} 当删除失败时抛出错误
+ */
 const confirmDelete = (record: any) => {
   console.log('delete', record);
   deleteApi({ ids: record.id })
@@ -408,6 +528,11 @@ const confirmDelete = (record: any) => {
       });
 };
 
+/**
+ * 处理批量删除操作
+ * 
+ * @throws {Error} 当删除失败时抛出错误
+ */
 const handleBatchDelete = () => {
   console.log(data.selectedRowKeys);
   if (data.selectedRowKeys.length <= 0) {
@@ -427,6 +552,11 @@ const handleBatchDelete = () => {
       });
 };
 
+/**
+ * 处理表单提交
+ * 
+ * @throws {Error} 当表单验证失败或提交失败时抛出错误
+ */
 const handleOk = () => {
   myform.value
       ?.validate()
@@ -442,7 +572,6 @@ const handleOk = () => {
               .catch((err) => {
                 console.log(err);
                 message.error(err.msg || '操作失败');
-
               });
         } else {
           createApi(modal.form)
@@ -455,7 +584,6 @@ const handleOk = () => {
               .catch((err) => {
                 console.log(err);
                 message.error(err.msg || '操作失败');
-
               });
         }
       })
@@ -464,21 +592,30 @@ const handleOk = () => {
       });
 };
 
+/**
+ * 处理取消操作
+ */
 const handleCancel = () => {
   hideModal();
 };
 
-// 恢复表单初始状态
+/**
+ * 重置表单状态
+ */
 const resetModal = () => {
   myform.value?.resetFields();
 };
 
-// 关闭弹窗
+/**
+ * 关闭弹窗
+ */
 const hideModal = () => {
   modal.visile = false;
 };
 
-// 定义DataItem接口
+/**
+ * 定义DataItem接口
+ */
 interface DataItem {
   id: number | string;
   title: string;
@@ -490,6 +627,10 @@ interface DataItem {
 </script>
 
 <style scoped lang="less">
+/**
+ * 页面视图样式
+ * 设置整体布局和背景
+ */
 .page-view {
   min-height: 100%;
   background: #f0f2fa;
@@ -499,6 +640,9 @@ interface DataItem {
   gap: 20px;
 }
 
+/**
+ * 页面标题区域样式
+ */
 .header-section {
   margin-bottom: 8px;
   
@@ -516,6 +660,9 @@ interface DataItem {
   }
 }
 
+/**
+ * 表格操作按钮区域样式
+ */
 .table-operations {
   margin-bottom: 16px;
   display: flex;
@@ -538,6 +685,9 @@ interface DataItem {
   }
 }
 
+/**
+ * 树形卡片和表格卡片样式
+ */
 .tree-card, .table-card {
   border-radius: 8px;
   overflow: hidden;
@@ -564,6 +714,9 @@ interface DataItem {
   }
 }
 
+/**
+ * 自定义树形组件样式
+ */
 .custom-tree {
   padding: 8px;
   
@@ -581,6 +734,9 @@ interface DataItem {
   }
 }
 
+/**
+ * 树节点样式
+ */
 .tree-node {
   display: flex;
   align-items: center;
@@ -608,6 +764,9 @@ interface DataItem {
   }
 }
 
+/**
+ * 父级分类选择器样式
+ */
 .parent-tree-select {
   :deep(.ant-select-selector) {
     border-color: #d9d9d9;
