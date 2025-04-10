@@ -175,13 +175,29 @@ const calculateDiscount = (price, originalPrice) => {
  * @description 从路由参数获取搜索条件，并调用API获取结果
  */
 const search = () => {
+  // 优先使用关键词参数
   tData.keyword = route.query.keyword ? route.query.keyword.trim() : '';
   const categoryId = route.query.c; // 从URL中读取分类参数c
   const tag = route.query.tag; // 读取标签参数
   
-  console.log('URL参数:', route.query); // 调试日志
+  // 如果没有关键词但有分类ID，需要获取分类名称 - 仅用于显示
+  if (!tData.keyword && categoryId) {
+    if (route.query.category_name) {
+      tData.keyword = route.query.category_name;
+    } else {
+      getCategoryName(categoryId).then(name => {
+        tData.keyword = name || '所选分类';
+      });
+    }
+  }
   
-  const queryParams = { keyword: tData.keyword };
+  // 初始化API请求参数 - 这里是关键修改
+  const queryParams = {};
+  
+  // 仅当有搜索关键词且没有分类ID和标签ID时，才传keyword参数
+  if (route.query.keyword && !categoryId && !tag) {
+    queryParams.keyword = route.query.keyword.trim();
+  }
   
   // 添加分类参数（如果存在）
   if (categoryId) {
@@ -195,6 +211,7 @@ const search = () => {
     console.log('标签ID:', tag);
   }
   
+  console.log('最终API请求参数:', queryParams); // 调试日志
   getThingList(queryParams);
 };
 
@@ -252,6 +269,19 @@ const getThingList = (data) => {
     console.log('请求失败:', err);
     tData.loading = false;
   });
+};
+
+// 添加获取分类名称的方法
+const getCategoryName = async (categoryId) => {
+  // 调用获取分类详情的API
+  try {
+    // 示例: const res = await getCategoryApi(categoryId);
+    // return res.data.name;
+    return '美妆护肤'; // 临时返回固定值作为示例
+  } catch (error) {
+    console.error('获取分类名称失败:', error);
+    return '分类';
+  }
 };
 </script>
 <style scoped lang="less">

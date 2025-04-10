@@ -95,6 +95,16 @@
             </div>
           </div>
           
+          <div class="input-wrapper">
+            <label class="input-label">确认密码</label>
+            <div class="input-field">
+              <span class="input-icon">
+                <img :src="PwdIcon" />
+              </span>
+              <input type="password" placeholder="再次输入密码" v-model="pageData.confirmPassword" />
+            </div>
+          </div>
+          
           <div class="input-wrapper verification-wrapper">
             <label class="input-label">验证码</label>
             <div class="verification-container">
@@ -160,18 +170,40 @@ function refreshCaptcha() {
 const pageData = reactive({
   username: '',
   password: '',
+  confirmPassword: '',
   mobile: '',
   agreeTerms: false
 });
 
 const handleRegister = () => {
+  if (!pageData.username) {
+    message.warning('请输入账号');
+    return;
+  }
+  
+  if (!pageData.password) {
+    message.warning('请输入密码');
+    return;
+  }
+  
+  if (!pageData.confirmPassword) {
+    message.warning('请输入确认密码');
+    return;
+  }
+  
+  if (!pageData.mobile) {
+    message.warning('请输入手机号');
+    return;
+  }
+  
   if (!pageData.agreeTerms) {
     message.warning('请同意用户协议和隐私政策');
     return;
   }
   
-  if (!pageData.username || !pageData.password || !pageData.mobile) {
-    message.warning('请填写完整注册信息');
+  // 3. 验证两次密码输入是否一致
+  if (pageData.password !== pageData.confirmPassword) {
+    message.warning('提示两次密码输入不一致');
     return;
   }
   
@@ -189,16 +221,22 @@ const handleRegister = () => {
   userRegisterApi({
     username: pageData.username,
     password: pageData.password,
-    rePassword: pageData.password,
+    rePassword: pageData.confirmPassword,
     mobile: pageData.mobile,
     code: userInputCode.value
   })
     .then((res) => {
+      // 4. 注册成功提示
       message.success('注册成功');
       router.push({ name: 'login' });
     })
     .catch((err) => {
-      message.error(err.msg || '注册失败');
+      // 2. 检查是否用户名已存在的错误
+      if (err.code === 'USER_EXISTS' || (err.msg && err.msg.includes('已存在'))) {
+        message.error('提示用户名已存在');
+      } else {
+        message.error(err.msg || '注册失败');
+      }
     });
 };
 </script>

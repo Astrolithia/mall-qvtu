@@ -350,10 +350,54 @@ const getTagColor = (id) => {
  * @param {number} categoryId - 分类ID
  */
 const navigateToCategory = (categoryId) => {
+  // 查找分类数据
+  let categoryName = '分类';
+  let foundCategory = false;
+  
+  // 查找一级分类
+  for (const category of categoryList.value) {
+    if (category.id === categoryId) {
+      categoryName = category.title;
+      foundCategory = true;
+      break;
+    }
+    
+    // 如果有子分类，查找二级分类
+    if (category.children && category.children.length > 0) {
+      for (const subCategory of category.children) {
+        if (subCategory.id === categoryId) {
+          categoryName = subCategory.title;
+          foundCategory = true;
+          break;
+        }
+        
+        // 如果有孙分类，查找三级分类
+        if (subCategory.children && subCategory.children.length > 0) {
+          for (const thirdCategory of subCategory.children) {
+            if (thirdCategory.id === categoryId) {
+              categoryName = thirdCategory.title;
+              foundCategory = true;
+              break;
+            }
+          }
+        }
+        
+        if (foundCategory) break;
+      }
+    }
+    
+    if (foundCategory) break;
+  }
+  
+  // 路由跳转，添加分类名称参数
   router.push({
     name: 'search',
-    query: { c: categoryId }
+    query: { 
+      c: categoryId,
+      category_name: categoryName 
+    }
   });
+  
   showCategoryPanel.value = false;
 }
 

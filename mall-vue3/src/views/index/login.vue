@@ -158,7 +158,7 @@ const pageData = reactive({
 
 const handleLogin = () => {
   if (!pageData.loginForm.username || !pageData.loginForm.password) {
-    message.warning('请输入完整的登录信息');
+    message.warning('用户名和密码不能为空');
     return;
   }
   
@@ -182,7 +182,14 @@ const handleLogin = () => {
       loginSuccess();
     })
     .catch((err) => {
-      message.warn(err.msg || '登录失败');
+      // 处理不同的错误情况
+      if (err.code === 'USER_NOT_FOUND') {
+        message.warn('用户名不存在');
+      } else if (err.code === 'INVALID_PASSWORD') {
+        message.warn('密码错误');
+      } else {
+        message.warn(err.msg || '登录失败');
+      }
     });
 };
 

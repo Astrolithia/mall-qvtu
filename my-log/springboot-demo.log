@@ -8465,3 +8465,608 @@ java.sql.SQLSyntaxErrorException: Unknown column 'create_time' in 'order clause'
 2025-04-10 22:01:08.030 [ http-nio-9100-exec-9 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
 2025-04-10 22:01:08.041 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 82 ] - 开始查询轮播图列表
 2025-04-10 22:01:08.045 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 88 ] - 查询轮播图列表完成, 记录数量=1
+2025-04-10 22:10:18.827 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.controller.UserController : 158 ] - 开始用户注册: username=test, password长度=6, rePassword长度=6
+2025-04-10 22:10:18.831 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.controller.UserController : 165 ] - 用户对象: User(id=null, username=test, password=123456, rePassword=123456, nickname=null, mobile=13163892345, email=null, description=null, role=null, status=null, score=null, avatar=null, avatarFile=null, token=null, createTime=null, pushEmail=null, pushSwitch=null)
+2025-04-10 22:10:18.832 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.controller.UserController : 186 ] - 检查用户名是否重复: test
+2025-04-10 22:10:18.855 [ http-nio-9100-exec-7 ] - [ WARN  ] [ com.gk.study.controller.UserController : 188 ] - 用户名重复: test
+2025-04-10 22:10:31.639 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.controller.UserController : 158 ] - 开始用户注册: username=Mayuri, password长度=6, rePassword长度=6
+2025-04-10 22:10:31.639 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.controller.UserController : 165 ] - 用户对象: User(id=null, username=Mayuri, password=123456, rePassword=123456, nickname=null, mobile=13163892345, email=null, description=null, role=null, status=null, score=null, avatar=null, avatarFile=null, token=null, createTime=null, pushEmail=null, pushSwitch=null)
+2025-04-10 22:10:31.639 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.controller.UserController : 186 ] - 检查用户名是否重复: Mayuri
+2025-04-10 22:10:31.644 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.controller.UserController : 208 ] - 保存用户头像
+2025-04-10 22:10:31.644 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.controller.UserController : 464 ] - 没有上传头像文件
+2025-04-10 22:10:31.645 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.controller.UserController : 214 ] - 没有头像或头像保存失败
+2025-04-10 22:10:31.645 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.controller.UserController : 228 ] - 创建用户: Mayuri
+2025-04-10 22:10:31.648 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.controller.UserController : 230 ] - 用户创建成功: Mayuri
+2025-04-10 22:10:40.927 [ http-nio-9100-exec-9 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:10:40.941 [ http-nio-9100-exec-9 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:10:40.948 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 82 ] - 开始查询轮播图列表
+2025-04-10 22:10:40.956 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 88 ] - 查询轮播图列表完成, 记录数量=1
+2025-04-10 22:10:45.315 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:10:45.318 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:11:09.382 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 159 ] - token==>b291bc27ee6188fec206721ee71bf0b9
+2025-04-10 22:11:09.406 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.controller.UserController : 462 ] - 头像保存成功: /Users/astrolithia/Documents/mall/upload/avatar/60fe5a1a-c7e7-4028-bf46-1c5333f9dfd7.jpeg
+2025-04-10 22:12:15.026 [ http-nio-9100-exec-5 ] - [ ERROR ] [ com.gk.study.handler.CustomExceptionHandler : 72 ] - error log======>
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Table 'mall.B_classification' doesn't exist
+### The error may exist in file [/Users/astrolithia/Documents/mall/mall-server/target/classes/mapper/OverviewMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select B.title, count(B.title) as count         from b_thing A join B_classification B on A.classification_id = B.id         group by B.title         order by count desc limit 5;
+### Cause: java.sql.SQLSyntaxErrorException: Table 'mall.B_classification' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Table 'mall.B_classification' doesn't exist
+org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Table 'mall.B_classification' doesn't exist
+### The error may exist in file [/Users/astrolithia/Documents/mall/mall-server/target/classes/mapper/OverviewMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select B.title, count(B.title) as count         from b_thing A join B_classification B on A.classification_id = B.id         group by B.title         order by count desc limit 5;
+### Cause: java.sql.SQLSyntaxErrorException: Table 'mall.B_classification' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Table 'mall.B_classification' doesn't exist
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:239)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:91)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:441)
+	at jdk.proxy2/jdk.proxy2.$Proxy65.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:224)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.executeForMany(MybatisMapperMethod.java:166)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:77)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:148)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
+	at jdk.proxy2/jdk.proxy2.$Proxy79.getPopularClassification(Unknown Source)
+	at com.gk.study.controller.OverViewController.count(OverViewController.java:180)
+	at jdk.internal.reflect.GeneratedMethodAccessor256.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1726)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.sql.SQLSyntaxErrorException: Table 'mall.B_classification' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at jdk.internal.reflect.GeneratedMethodAccessor89.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at jdk.proxy3/jdk.proxy3.$Proxy92.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:64)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:325)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:89)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:151)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:145)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:140)
+	at jdk.internal.reflect.GeneratedMethodAccessor104.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:427)
+	... 57 common frames omitted
+2025-04-10 22:12:15.047 [ http-nio-9100-exec-5 ] - [ ERROR ] [ o.a.c.c.C.[.[localhost].[/api].[dispatcherServlet] : 175 ] - Servlet.service() for servlet [dispatcherServlet] in context with path [/api] threw exception [Request processing failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Table 'mall.B_classification' doesn't exist
+### The error may exist in file [/Users/astrolithia/Documents/mall/mall-server/target/classes/mapper/OverviewMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select B.title, count(B.title) as count         from b_thing A join B_classification B on A.classification_id = B.id         group by B.title         order by count desc limit 5;
+### Cause: java.sql.SQLSyntaxErrorException: Table 'mall.B_classification' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Table 'mall.B_classification' doesn't exist] with root cause
+java.sql.SQLSyntaxErrorException: Table 'mall.B_classification' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at jdk.internal.reflect.GeneratedMethodAccessor89.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at jdk.proxy3/jdk.proxy3.$Proxy92.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:64)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:325)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:89)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:151)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:145)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:140)
+	at jdk.internal.reflect.GeneratedMethodAccessor104.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:427)
+	at jdk.proxy2/jdk.proxy2.$Proxy65.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:224)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.executeForMany(MybatisMapperMethod.java:166)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:77)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:148)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
+	at jdk.proxy2/jdk.proxy2.$Proxy79.getPopularClassification(Unknown Source)
+	at com.gk.study.controller.OverViewController.count(OverViewController.java:180)
+	at jdk.internal.reflect.GeneratedMethodAccessor256.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1726)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-04-10 22:12:16.253 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:12:16.258 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:12:16.283 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 82 ] - 开始查询轮播图列表
+2025-04-10 22:12:16.292 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 88 ] - 查询轮播图列表完成, 记录数量=1
+2025-04-10 22:12:29.268 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 159 ] - token==>b291bc27ee6188fec206721ee71bf0b9
+2025-04-10 22:12:29.285 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.controller.UserController : 464 ] - 没有上传头像文件
+2025-04-10 22:12:57.288 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:12:57.313 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:12:57.326 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 82 ] - 开始查询轮播图列表
+2025-04-10 22:12:57.329 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 88 ] - 查询轮播图列表完成, 记录数量=1
+2025-04-10 22:12:58.703 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:12:58.705 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:12:58.722 [ http-nio-9100-exec-9 ] - [ INFO  ] [ com.gk.study.controller.CommentController : 106 ] - 开始查询商品评论, thingId=10, order=recent
+2025-04-10 22:12:58.724 [ http-nio-9100-exec-9 ] - [ ERROR ] [ com.gk.study.handler.CustomExceptionHandler : 72 ] - error log======>
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column 'create_time' in 'order clause'
+### The error may exist in com/gk/study/mapper/CommentMapper.java (best guess)
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT  id,content,comment_time,like_count,user_id,thing_id,score,order_id  FROM b_comment     WHERE (thing_id = ?) ORDER BY create_time DESC
+### Cause: java.sql.SQLSyntaxErrorException: Unknown column 'create_time' in 'order clause'
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Unknown column 'create_time' in 'order clause'
+org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column 'create_time' in 'order clause'
+### The error may exist in com/gk/study/mapper/CommentMapper.java (best guess)
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT  id,content,comment_time,like_count,user_id,thing_id,score,order_id  FROM b_comment     WHERE (thing_id = ?) ORDER BY create_time DESC
+### Cause: java.sql.SQLSyntaxErrorException: Unknown column 'create_time' in 'order clause'
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Unknown column 'create_time' in 'order clause'
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:239)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:91)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:441)
+	at jdk.proxy2/jdk.proxy2.$Proxy65.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:224)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.executeForMany(MybatisMapperMethod.java:166)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:77)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:148)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
+	at jdk.proxy2/jdk.proxy2.$Proxy70.selectList(Unknown Source)
+	at com.gk.study.service.impl.CommentServiceImpl.getThingCommentList(CommentServiceImpl.java:75)
+	at com.gk.study.service.impl.CommentServiceImpl$$FastClassBySpringCGLIB$$72909529.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688)
+	at com.gk.study.service.impl.CommentServiceImpl$$EnhancerBySpringCGLIB$$2723abf0.getThingCommentList(<generated>)
+	at com.gk.study.controller.CommentController.listThingComments(CommentController.java:109)
+	at com.gk.study.controller.CommentController$$FastClassBySpringCGLIB$$1769960b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688)
+	at com.gk.study.controller.CommentController$$EnhancerBySpringCGLIB$$b49d4bd6.listThingComments(<generated>)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1726)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.sql.SQLSyntaxErrorException: Unknown column 'create_time' in 'order clause'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at jdk.internal.reflect.GeneratedMethodAccessor89.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at jdk.proxy3/jdk.proxy3.$Proxy92.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:64)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:325)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:89)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:151)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:145)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:140)
+	at jdk.internal.reflect.GeneratedMethodAccessor104.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:427)
+	... 67 common frames omitted
+2025-04-10 22:12:58.745 [ http-nio-9100-exec-9 ] - [ ERROR ] [ o.a.c.c.C.[.[localhost].[/api].[dispatcherServlet] : 175 ] - Servlet.service() for servlet [dispatcherServlet] in context with path [/api] threw exception [Request processing failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column 'create_time' in 'order clause'
+### The error may exist in com/gk/study/mapper/CommentMapper.java (best guess)
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT  id,content,comment_time,like_count,user_id,thing_id,score,order_id  FROM b_comment     WHERE (thing_id = ?) ORDER BY create_time DESC
+### Cause: java.sql.SQLSyntaxErrorException: Unknown column 'create_time' in 'order clause'
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Unknown column 'create_time' in 'order clause'] with root cause
+java.sql.SQLSyntaxErrorException: Unknown column 'create_time' in 'order clause'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at jdk.internal.reflect.GeneratedMethodAccessor89.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at jdk.proxy3/jdk.proxy3.$Proxy92.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:64)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:325)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:89)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:151)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:145)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:140)
+	at jdk.internal.reflect.GeneratedMethodAccessor104.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:427)
+	at jdk.proxy2/jdk.proxy2.$Proxy65.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:224)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.executeForMany(MybatisMapperMethod.java:166)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:77)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:148)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
+	at jdk.proxy2/jdk.proxy2.$Proxy70.selectList(Unknown Source)
+	at com.gk.study.service.impl.CommentServiceImpl.getThingCommentList(CommentServiceImpl.java:75)
+	at com.gk.study.service.impl.CommentServiceImpl$$FastClassBySpringCGLIB$$72909529.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688)
+	at com.gk.study.service.impl.CommentServiceImpl$$EnhancerBySpringCGLIB$$2723abf0.getThingCommentList(<generated>)
+	at com.gk.study.controller.CommentController.listThingComments(CommentController.java:109)
+	at com.gk.study.controller.CommentController$$FastClassBySpringCGLIB$$1769960b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688)
+	at com.gk.study.controller.CommentController$$EnhancerBySpringCGLIB$$b49d4bd6.listThingComments(<generated>)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1726)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-04-10 22:12:58.761 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 235 ] - 开始查询分类路径, id=15
+2025-04-10 22:12:58.765 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 251 ] - 查询分类路径完成, 路径长度=3
+2025-04-10 22:13:03.973 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:13:03.976 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:13:03.995 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 82 ] - 开始查询轮播图列表
+2025-04-10 22:13:03.999 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 88 ] - 查询轮播图列表完成, 记录数量=1
+2025-04-10 22:13:04.813 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:13:04.817 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:13:07.961 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:13:07.971 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:13:14.257 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:13:14.265 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:13:14.289 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 24，包含子分类ID: [24]
+2025-04-10 22:13:15.311 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 19，包含子分类ID: [19, 20, 21]
+2025-04-10 22:16:25.976 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 19，包含子分类ID: [19, 20, 21]
+2025-04-10 22:16:31.640 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:16:31.654 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 19，包含子分类ID: [19, 20, 21]
+2025-04-10 22:16:31.654 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:16:41.988 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:16:42.012 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:16:42.012 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 19，包含子分类ID: [19, 20, 21]
+2025-04-10 22:16:53.777 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 21，包含子分类ID: [21]
+2025-04-10 22:16:56.458 [ http-nio-9100-exec-4 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 20，包含子分类ID: [20, 21]
+2025-04-10 22:17:21.683 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 20，包含子分类ID: [20, 21]
+2025-04-10 22:18:55.177 [ http-nio-9100-exec-9 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 20，包含子分类ID: [20, 21]
+2025-04-10 22:18:58.632 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 19，包含子分类ID: [19, 20, 21]
+2025-04-10 22:18:59.905 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 22，包含子分类ID: [22, 23]
+2025-04-10 22:19:00.986 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 24，包含子分类ID: [24]
+2025-04-10 22:19:14.153 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 24，包含子分类ID: [24]
+2025-04-10 22:19:15.989 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:19:16.008 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 24，包含子分类ID: [24]
+2025-04-10 22:19:16.011 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:19:17.500 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 24，包含子分类ID: [24]
+2025-04-10 22:19:19.317 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 24，包含子分类ID: [24]
+2025-04-10 22:19:20.728 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:19:20.769 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:19:20.772 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 24，包含子分类ID: [24]
+2025-04-10 22:19:21.419 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 22，包含子分类ID: [22, 23]
+2025-04-10 22:19:22.302 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 24，包含子分类ID: [24]
+2025-04-10 22:19:23.288 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 16，包含子分类ID: [16, 17, 18]
+2025-04-10 22:19:34.480 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 16，包含子分类ID: [16, 17, 18]
+2025-04-10 22:19:38.800 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 19，包含子分类ID: [19, 20, 21]
+2025-04-10 22:19:40.004 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 16，包含子分类ID: [16, 17, 18]
+2025-04-10 22:19:41.130 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 13，包含子分类ID: [13, 14, 15]
+2025-04-10 22:20:23.933 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 24，包含子分类ID: [24]
+2025-04-10 22:20:37.840 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 24，包含子分类ID: [24]
+2025-04-10 22:20:51.388 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 19，包含子分类ID: [19, 20, 21]
+2025-04-10 22:20:52.554 [ http-nio-9100-exec-9 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 16，包含子分类ID: [16, 17, 18]
+2025-04-10 22:21:08.539 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:21:08.560 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:21:08.560 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 16，包含子分类ID: [16, 17, 18]
+2025-04-10 22:21:52.985 [ http-nio-9100-exec-9 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 16，包含子分类ID: [16, 17, 18]
+2025-04-10 22:21:56.289 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 16，包含子分类ID: [16, 17, 18]
+2025-04-10 22:22:03.621 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 24，包含子分类ID: [24]
+2025-04-10 22:22:04.722 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 16，包含子分类ID: [16, 17, 18]
+2025-04-10 22:22:05.913 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 13，包含子分类ID: [13, 14, 15]
+2025-04-10 22:22:39.206 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 24，包含子分类ID: [24]
+2025-04-10 22:25:15.923 [ http-nio-9100-exec-9 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:25:15.993 [ http-nio-9100-exec-9 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:25:16.022 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 82 ] - 开始查询轮播图列表
+2025-04-10 22:25:16.025 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 88 ] - 查询轮播图列表完成, 记录数量=1
+2025-04-10 22:25:28.778 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:25:28.791 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:25:28.817 [ http-nio-9100-exec-9 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 82 ] - 开始查询轮播图列表
+2025-04-10 22:25:28.819 [ http-nio-9100-exec-9 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 88 ] - 查询轮播图列表完成, 记录数量=1
+2025-04-10 22:25:29.828 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:25:29.830 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:25:29.830 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 13，包含子分类ID: [13, 14, 15]
+2025-04-10 22:27:30.977 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:27:31.041 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:27:31.102 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 82 ] - 开始查询轮播图列表
+2025-04-10 22:27:31.111 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 88 ] - 查询轮播图列表完成, 记录数量=1
+2025-04-10 22:27:31.717 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:27:31.719 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 19，包含子分类ID: [19, 20, 21]
+2025-04-10 22:27:31.721 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:27:34.969 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 16，包含子分类ID: [16, 17, 18]
+2025-04-10 22:27:36.372 [ http-nio-9100-exec-9 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 13，包含子分类ID: [13, 14, 15]
+2025-04-10 22:27:37.306 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 22，包含子分类ID: [22, 23]
+2025-04-10 22:27:38.041 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 24，包含子分类ID: [24]
+2025-04-10 22:27:38.470 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:27:38.477 [ http-nio-9100-exec-4 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 24，包含子分类ID: [24]
+2025-04-10 22:27:38.481 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:27:40.531 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:27:40.540 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:27:40.550 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 82 ] - 开始查询轮播图列表
+2025-04-10 22:27:40.557 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 88 ] - 查询轮播图列表完成, 记录数量=1
+2025-04-10 22:27:41.565 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:27:41.580 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:27:41.580 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 24，包含子分类ID: [24]
+2025-04-10 22:27:42.494 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 19，包含子分类ID: [19, 20, 21]
+2025-04-10 22:27:43.694 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 16，包含子分类ID: [16, 17, 18]
+2025-04-10 22:27:44.479 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:27:44.491 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:27:44.491 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 82 ] - 开始查询轮播图列表
+2025-04-10 22:27:44.501 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 88 ] - 查询轮播图列表完成, 记录数量=1
+2025-04-10 22:27:44.763 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:27:44.774 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:27:44.784 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 82 ] - 开始查询轮播图列表
+2025-04-10 22:27:44.789 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 88 ] - 查询轮播图列表完成, 记录数量=1
+2025-04-10 22:27:45.389 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:27:45.394 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 24，包含子分类ID: [24]
+2025-04-10 22:27:45.397 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:28:24.886 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 19，包含子分类ID: [19, 20, 21]
+2025-04-10 22:28:26.454 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 16，包含子分类ID: [16, 17, 18]
+2025-04-10 22:28:28.307 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 17，包含子分类ID: [17, 18]
+2025-04-10 22:30:40.119 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:30:40.129 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:30:40.131 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 82 ] - 开始查询轮播图列表
+2025-04-10 22:30:40.133 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 88 ] - 查询轮播图列表完成, 记录数量=1
+2025-04-10 22:30:48.761 [ http-nio-9100-exec-9 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:30:48.764 [ http-nio-9100-exec-9 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:30:49.610 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:30:49.613 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:31:04.030 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:31:04.044 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:31:04.051 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 82 ] - 开始查询轮播图列表
+2025-04-10 22:31:04.056 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 88 ] - 查询轮播图列表完成, 记录数量=1
+2025-04-10 22:31:15.530 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:31:15.539 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:31:15.545 [ http-nio-9100-exec-4 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 82 ] - 开始查询轮播图列表
+2025-04-10 22:31:15.551 [ http-nio-9100-exec-4 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 88 ] - 查询轮播图列表完成, 记录数量=1
+2025-04-10 22:32:15.537 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:32:15.556 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 82 ] - 开始查询轮播图列表
+2025-04-10 22:32:15.557 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:32:15.569 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 88 ] - 查询轮播图列表完成, 记录数量=1
+2025-04-10 22:34:24.680 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:34:24.724 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 82 ] - 开始查询轮播图列表
+2025-04-10 22:34:24.727 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:34:24.731 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.controller.BannerController : 88 ] - 查询轮播图列表完成, 记录数量=1
+2025-04-10 22:35:35.306 [ http-nio-9100-exec-4 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:35:35.315 [ http-nio-9100-exec-4 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:35:35.315 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 22，包含子分类ID: [22, 23]
+2025-04-10 22:35:36.234 [ http-nio-9100-exec-9 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 19，包含子分类ID: [19, 20, 21]
+2025-04-10 22:37:21.380 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:37:21.438 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:37:21.449 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:37:21.470 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:37:21.483 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:37:21.492 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:37:29.352 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 95 ] - 开始查询分类树形结构
+2025-04-10 22:37:29.380 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.controller.ClassificationController : 101 ] - 查询分类树形结构完成
+2025-04-10 22:37:29.380 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 19，包含子分类ID: [19, 20, 21]
+2025-04-10 22:37:30.620 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 16，包含子分类ID: [16, 17, 18]
+2025-04-10 22:37:31.915 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 13，包含子分类ID: [13, 14, 15]
+2025-04-10 22:37:33.255 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 22，包含子分类ID: [22, 23]
+2025-04-10 22:37:34.134 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 24，包含子分类ID: [24]
+2025-04-10 22:37:35.073 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 16，包含子分类ID: [16, 17, 18]
+2025-04-10 22:37:36.170 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 13，包含子分类ID: [13, 14, 15]
+2025-04-10 22:37:52.926 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 16，包含子分类ID: [16, 17, 18]
+2025-04-10 22:37:55.072 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 19，包含子分类ID: [19, 20, 21]
+2025-04-10 22:39:04.388 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 19，包含子分类ID: [19, 20, 21]
+2025-04-10 22:39:04.410 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 17，包含子分类ID: [17, 18]
+2025-04-10 22:39:11.020 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 13，包含子分类ID: [13, 14, 15]
+2025-04-10 22:39:12.003 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 19，包含子分类ID: [19, 20, 21]
+2025-04-10 22:39:13.195 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 16，包含子分类ID: [16, 17, 18]
+2025-04-10 22:39:14.137 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 22，包含子分类ID: [22, 23]
+2025-04-10 22:39:14.964 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 24，包含子分类ID: [24]
+2025-04-10 22:39:15.833 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.service.impl.ThingServiceImpl : 159 ] - 分类筛选 - 分类ID: 16，包含子分类ID: [16, 17, 18]
